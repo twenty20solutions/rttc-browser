@@ -102,11 +102,6 @@ describe('.coerceExemplar()', function() {
     ));
   });
 
-  it('should coerce Streams and Buffers into "*" (which is sort of weird, but it\'s ok)', function (){
-    coerceExemplarAndVerifyDeep( Buffer.from('asdf'), '*'   );
-    coerceExemplarAndVerifyDeep( new (require('stream').Readable)(), '*'   );
-  });
-
   it('should coerce functions into "->"', function (){
     coerceExemplarAndVerifyDeep({
       salutation: 'Mr.',

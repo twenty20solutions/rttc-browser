@@ -13,8 +13,6 @@ describe('.compile()', function() {
 // *  | a deeply nested thing   | `{ a: { b: { c: [Object] } } }`           | `{ a: { b: { c: { d: {} } } } }`     |
 // *  | a circular thing        | `{ y: { z: [Circular] } }`                | `{ y: { z: '[Circular ~]' } }`       |
 // *  | undefined               | `undefined`                               | `null`                               |
-// *  | Readable (Node stream)  | `{ _readableState: { highWaterMar..}}`    | `null`                               |
-// *  | Buffer (Node bytestring)| `<Buffer 61 62 63>`                       | `[ 97, 98, 99 ]`                     |
 
   it('should wrap strings in single quotes', function() {
     _assertCompiledResultIsCorrect({
@@ -119,21 +117,6 @@ describe('.compile()', function() {
     });
   });
 
-  it('should return string that looks like `null` for stream.Readable instances', function() {
-    _assertCompiledResultIsCorrect({
-      value: new (require('stream').Readable)(),
-      expected: 'null'
-    });
-  });
-
-  // TODO: make this work
-  it.skip('should return string that looks like `null` for Buffer instances`', function() {
-    _assertCompiledResultIsCorrect({
-      value: Buffer.from('alive with the glory of love'),
-      expected: 'null'
-    });
-  });
-
   it('should return string that looks like dictionary for dictionary', function() {
     _assertCompiledResultIsCorrect({
       value: {},
@@ -200,11 +183,8 @@ describe('.compile()', function() {
         someFunction: function foobar(x,y){ return x+y; },
         weirdNumbers: [Infinity, -Infinity, NaN, -0, 0],
         weirdExistentials: [null, undefined],
-        nodejsThings: {
-          stream: new (require('stream').Readable)()
-        }
       }],
-      expected: '[ { someDate: \'1605-11-05T00:00:00.000Z\',\n    someRegExp: \'/waldo/gi\',\n    someError: \'setting this stack property to something inane so that it\\\'s easy to compare, and so tests don\\\'t depend on file paths from the stack trace of my computer\',\n    someFunction: function foobar(x,y){ return x+y; },\n    weirdNumbers: [ 0, 0, 0, 0, 0 ],\n    weirdExistentials: [ null ],\n    nodejsThings: { stream: null } } ]'
+      expected: '[ { someDate: \'1605-11-05T00:00:00.000Z\',\n    someRegExp: \'/waldo/gi\',\n    someError: \'setting this stack property to something inane so that it\\\'s easy to compare, and so tests don\\\'t depend on file paths from the stack trace of my computer\',\n    someFunction: function foobar(x,y){ return x+y; },\n    weirdNumbers: [ 0, 0, 0, 0, 0 ],\n    weirdExistentials: [ null ] } ]'
     });
 
   });

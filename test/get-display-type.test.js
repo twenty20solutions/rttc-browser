@@ -16,7 +16,6 @@ describe('.getDisplayType()', function() {
     assert.strictEqual(typeof rttc.getDisplayType(-Infinity), 'string');
     assert.strictEqual(typeof rttc.getDisplayType(NaN), 'string');
     assert.strictEqual(typeof rttc.getDisplayType(new Error('wat')), 'string');
-    assert.strictEqual(typeof rttc.getDisplayType(Buffer.from('stuff')), 'string');
     assert.strictEqual(typeof rttc.getDisplayType(new Date('stuff')), 'string');
     assert.strictEqual(typeof rttc.getDisplayType(new Error('stuff')), 'string');
     assert.strictEqual(typeof rttc.getDisplayType(new RegExp('stuff')), 'string');
@@ -97,14 +96,6 @@ describe('.getDisplayType()', function() {
     assert.strictEqual(rttc.getDisplayType({a:[]}), 'dictionary');
     assert.strictEqual(rttc.getDisplayType({a:{x:3}}), 'dictionary');
     assert.strictEqual(rttc.getDisplayType(new Object()), 'dictionary');
-  });
-  it('should recognize Streams', function (){
-    assert.strictEqual(rttc.getDisplayType(new (require('stream').Readable)()), 'Readable');
-    assert.strictEqual(rttc.getDisplayType(new (require('stream').Stream)()), 'Stream');
-    assert.strictEqual(rttc.getDisplayType(new (require('stream').Writable)()), 'Writable');
-  });
-  it('should recognize Buffers', function (){
-    assert.strictEqual(rttc.getDisplayType(Buffer.from('asdf')), 'Buffer');
   });
 
 });

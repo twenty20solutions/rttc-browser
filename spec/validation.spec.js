@@ -57,8 +57,6 @@ module.exports = [
   { example: 'foo', actual: /some regexp/, error: true },
   { example: 'foo', actual: function(){}, error: true },
   { example: 'foo', actual: new Date('November 5, 1605 GMT'), result: '1605-11-05T00:00:00.000Z' },
-  { example: 'foo', actual: new (require('stream').Readable)(), error: true },
-  { example: 'foo', actual: Buffer.from('asdf'), error: true },
   { example: 'foo', actual: new Error('asdf'), error: true },
 
   ////////////////////////////////////////////
@@ -109,8 +107,6 @@ module.exports = [
   { example: 123, actual: /some regexp/, error: true },
   { example: 123, actual: function(){}, error: true },
   { example: 123, actual: new Date('November 5, 1605 GMT'), result: -11491632000000 },
-  { example: 123, actual: new (require('stream').Readable)(), error: true },
-  { example: 123, actual: Buffer.from('asdf'), error: true },
   { example: 123, actual: new Error('asdf'), error: true },
 
   ////////////////////////////////////////////
@@ -162,8 +158,6 @@ module.exports = [
   { example: true, actual: /some regexp/, error: true },
   { example: true, actual: function(){}, error: true },
   { example: true, actual: new Date('November 5, 1605 GMT'), error: true },
-  { example: true, actual: new (require('stream').Readable)(), error: true },
-  { example: true, actual: Buffer.from('asdf'), error: true },
   { example: true, actual: new Error('asdf'), error: true },
 
   ////////////////////////////////////////////
@@ -198,10 +192,6 @@ module.exports = [
   { example: {}, actual: /some regexp/, error: true },
   { example: {}, actual: function(){}, error: true },
   { example: {}, actual: new Date('November 5, 1605 GMT'), error: true },
-  // Note that the enumerable properties for Streams vary between Node.js versions.
-  { example: {}, actual: new (require('stream').Readable)(), error: true },
-  // Note that the enumerable properties for Buffers vary between Node.js versions.
-  { example: {}, actual: Buffer.from('asdf'), error: true },
   { example: {}, actual: new Error('asdf'), error: true },
 
 
@@ -238,11 +228,6 @@ module.exports = [
   { example: [], actual: /some regexp/, error: true },
   { example: [], actual: function(){}, error: true },
   { example: [], actual: new Date('November 5, 1605 GMT'), error: true },
-  { example: [], actual: new (require('stream').Readable)(), error: true }, // TODO: consider enhancing this behavior to concat the stream contents? Needs community discussion.
-  // Skip Buffer tests for now since the enumerable properties vary between Node.js versions.
-  // { example: [], actual: Buffer.from('asdf'), result: [ 97, 115, 100, 102 ] },
-  // Note: we could bring back support for this by explicitly filtering properties of buffers in `.exec()`
-  // TODO: but actually, this should cause an error- use `example: '==='` for things like this.
   { example: [], actual: new Error('asdf'), error: true },
 
 
@@ -266,10 +251,6 @@ module.exports = [
   // { example: {}, actual: { x: undefined, null, NaN, -Infinity, Infinity, function(){} }, result: [] },
   { example: {}, actual: { x: /some regexp/ig }, result: {x:'/some regexp/gi' }},
   { example: {}, actual: { x: new Date('November 5, 1605 GMT') }, result: {x: '1605-11-05T00:00:00.000Z'} },
-  // Skip Readable stream tests for now since the enumerable properties vary between Node.js versions.
-  // { example: {}, actual: { x: new (require('stream').Readable)() }, result: { x: { _readableState: {},readable: true,_events: {},_maxListeners: 10 } } },
-  // Skip Buffer stream tests for now since the enumerable properties vary between Node.js versions.
-  // { example: {}, actual: { x: Buffer.from('asdf') } , result: {x: {}} },
   (function (){
     // Hard-code a fake `.stack` to avoid differences between computers that would cause tests to fail
     var e = new Error('asdf');
@@ -285,10 +266,6 @@ module.exports = [
   { example: [], actual: [function foo(a,b){return a+' '+b;}], result: ['function foo(a,b){return a+\' \'+b;}'] },
   { example: [], actual: [/some regexp/gi], result: ['/some regexp/gi'] },
   { example: [], actual: [new Date('November 5, 1605 GMT')], result: ['1605-11-05T00:00:00.000Z'] },
-  // Skip Readable stream tests for now since the enumerable properties vary between Node.js versions.
-  // { example: [], actual: [new (require('stream').Readable)()], result: [ { _readableState: {},readable: true,_events: {},_maxListeners: 10 }] },
-  // Skip Buffer stream tests for now since the enumerable properties vary between Node.js versions.
-  // { example: [], actual: [Buffer.from('asdf')], result: [{}] },
   (function (){
     var e = new Error('asdf');
     e.stack = 'fake_error';
@@ -349,8 +326,6 @@ module.exports = [
   { example: '*', actual: new Date('November 5, 1605 GMT'), result: '1605-11-05T00:00:00.000Z' },
   { example: '*', actual: (function(){var err=new Error();err.stack='test';return err;})(), result: 'test' },
   { example: '*', actual: function(){}, result: 'function(){}' },
-  { example: '*', actual: new (require('stream').Readable)(), error: true },
-
 
 
   ////////////////////////////////////////////
@@ -679,8 +654,6 @@ module.exports = [
   { example: '===', actual: /some regexp/, strictEq: true },
   { example: '===', actual: function (){}, strictEq: true },
   { example: '===', actual: new Date('November 5, 1605 GMT'), strictEq: true },
-  { example: '===', actual: new (require('stream').Readable)(), strictEq: true },
-  { example: '===', actual: Buffer.from('asdf'), strictEq: true },
   { example: '===', actual: new Error('asdf'), strictEq: true },
 
 

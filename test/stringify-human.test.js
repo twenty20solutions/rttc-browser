@@ -230,19 +230,6 @@ describe('.stringifyHuman()', function() {
           rttc.stringifyHuman(/sadg/g, 'ref');
         });
       });
-      it('should throw when given a Stream against type: `ref`',function(){
-        assert.throws(function (){
-          rttc.stringifyHuman(new (require('stream').Readable)(), 'ref');
-        });
-        assert.throws(function (){
-          rttc.stringifyHuman(new (require('stream').Stream)(), 'ref');
-        });
-      });
-      it('should throw when given a Buffer against type: `ref`',function(){
-        assert.throws(function (){
-          rttc.stringifyHuman(Buffer.from(), 'ref');
-        });
-      });
       it('should throw when given Infinity, -Infinity, or NaN against type: `ref`',function(){
         assert.throws(function (){
           rttc.stringifyHuman(Infinity, 'ref');
@@ -274,19 +261,6 @@ describe('.stringifyHuman()', function() {
       it('should throw when given a RegExp against type: `json`',function(){
         assert.throws(function (){
           rttc.stringifyHuman(/sadg/g, 'json');
-        });
-      });
-      it('should throw when given a Stream against type: `json`',function(){
-        assert.throws(function (){
-          rttc.stringifyHuman(new (require('stream').Readable)(), 'json');
-        });
-        assert.throws(function (){
-          rttc.stringifyHuman(new (require('stream').Stream)(), 'json');
-        });
-      });
-      it('should throw when given a Buffer against type: `json`',function(){
-        assert.throws(function (){
-          rttc.stringifyHuman(Buffer.from(), 'json');
         });
       });
       it('should throw when given Infinity, -Infinity, or NaN against type: `json`',function(){
