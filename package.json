@@ -1,11 +1,10 @@
 {
-  "name": "rttc",
-  "version": "10.0.1",
-  "description": "Runtime type-checking for JavaScript.",
+  "name": "rttc-browser",
+  "version": "1.0.0",
+  "description": "Runtime type-checking for JavaScript (on the browser - based of rttc module).",
   "main": "index.js",
   "scripts": {
-    "test": "node ./node_modules/mocha/bin/mocha --recursive -R dot",
-    "browserify": "browserify -s rttc -o rttc.browser.js ./"
+    "test": "node ./node_modules/mocha/bin/mocha --recursive -R dot"
   },
   "keywords": [
     "type-checking",
@@ -19,19 +18,20 @@
     "Scott Gress <@sgress454>",
     "Cody Stoltman <@particlebanana>",
     "Rachael Shaw <@rachaelshaw>",
-    "Irl Nathan <@irlnathan>"
+    "Irl Nathan <@irlnathan>",
+    "Luis Lobo Borobia <@luislob>"
   ],
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/node-machine/rttc.git"
+    "url": "git://github.com/luislobo/rttc-browser.git"
   },
   "bugs": {
-    "url": "http://github.com/node-machine/rttc/issues"
+    "url": "http://github.com/luislobo/rttc-browser/issues"
   },
   "engines": {
-    "node": ">= 0.10.0",
-    "npm": ">= 1.4.0"
+    "node": ">= 16",
+    "npm": ">= 8"
   },
   "dependencies": {
     "@sailshq/lodash": "3.10.4"

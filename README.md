@@ -1,35 +1,29 @@
-# RTTC
-Runtime (recursive) type-checking for JavaScript.
+# RTTC-BROWSER
+Runtime (recursive) type-checking for JavaScript (adapted for browser use. Based on `rttc`.
 
-This package is the official SDK for working with the RTTC type system.  It includes a lot of methods suitable for everyday use, as well as some lower-level methods that are intended for developers building tools which leverage the [machine specification](http://node-machine.org).
+This package is the official SDK for working with the RTTC type system.  It includes a lot of methods suitable for everyday use.
 
-## What is RTTC?
+## What is RTTC-BROWSER?
+
+It is a direct fork of `rttc` (kudos to the Sails.js team). It removes Node.js ties, making it browser safe.
 
 Throwing errors in an asynchronous callback can be [dangerous](http://stackoverflow.com/questions/5999373/how-do-i-prevent-node-js-from-crashing-try-catch-doesnt-work), particularly in Node.js.  Too often, these types of errors and crashes occur because of a trivial mistake or miscommunication about the data type of a variable; particularly when you're working on a team with other developers.
 
-RTTC is a lightweight type system that provides a safety net for JavaScript code. It provides flexible, performant type guarantees on an as-needed basis; without messing with your development stack or build tools. Instead, RTTC builds on top of the existing data structures and programming concepts from JavaScript and Node.js to validate and coerce data _at runtime_.  This allows you to add as much or as little type-checking as you like, in any new _or_ existing Node.js/Sails.js application.
-
-RTTC semantics are used by:
-+ the Node-Machine project's core utility packages, including the [`machine` runner](https://github.com/node-machine/machine)
-+ the [Sails.js framework core](http://sailsjs.org)
-+ every [Waterline driver](https://github.com/node-machine/driver-interface)
-+ every [machinepack published on NPM](http://node-machine.org/machinepacks), and
-+ the [Treeline](https://treeline.io) standard library
-
+RTTC-BROWSER is a lightweight type system that provides a safety net for JavaScript code. It provides flexible, performant type guarantees on an as-needed basis; without messing with your development stack or build tools. Instead, RTTC builds on top of the existing data structures and programming concepts from JavaScript and Node.js to validate and coerce data _at runtime_.  This allows you to add as much or as little type-checking as you like, in any new _or_ existing browser application.
 
 ## Installation
 
 ```sh
-$ npm install rttc --save
+$ npm install rttc-browser --save
 ```
 
 ## Basic Usage
 
 ```javascript
-var rttc = require('rttc');
+var rttc = require('rttc-browser');
 ```
 
-The `rttc` package has many different methods for working with fixtures, examples, type schemas, and runtime data in JavaScript.  But the most commonly-used RTTC methods are related to validation and coercion of runtime data:
+The `rttc-browser` package has many different methods for working with fixtures, examples, type schemas, and runtime data in JavaScript.  But the most commonly-used RTTC methods are related to validation and coercion of runtime data:
 
 ```javascript
 // If the value is valid vs. the specified type schema, then `.validateStrict()` simply returns undefined
@@ -1050,3 +1044,4 @@ Given a type schema, strip out generics ("ref", "json", {}, and []) to convert i
 MIT
 
 &copy; 2014 Mike McNeil, Cody Stoltman;  &copy; 2015-2016 The Treeline Company
+&copy; 2022 Luis Lobo Borobia
