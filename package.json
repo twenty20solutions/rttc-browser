@@ -1,6 +1,6 @@
 {
   "name": "rttc-browser",
-  "version": "1.0.0",
+  "version": "11.0.0",
   "description": "Runtime type-checking for JavaScript (on the browser - based of rttc module).",
   "main": "index.js",
   "scripts": {
